@@ -31,5 +31,16 @@ router.post(
     Validate,
     Register
 );
+// Login route == POST request
+router.post(
+    "/login",
+    check("email")
+        .isEmail()
+        .withMessage("Enter a valid email address")
+        .normalizeEmail(),
+    check("password").not().isEmpty(),
+    Validate,
+    Login
+);
 
 export default router;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon v1/server.js",
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/server.mjs",
     "type": "modules"
   },
   "keywords": [

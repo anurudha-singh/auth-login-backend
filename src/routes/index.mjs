@@ -1,5 +1,5 @@
 import express from "express"; // import the express module
-import {Auth, Login} from '../controllers/auth.mjs';
+import {Auth, Login, Logout} from '../controllers/auth.mjs';
 import { Verify } from "../middleware/verify_mware.mjs";
 const app = express(); // Create an app object
 
@@ -27,4 +27,5 @@ app.get("/v1/user", Verify, (req, res) => {
         message: "Welcome to the your Dashboard!",
     });
 });
+app.get('/logout',Logout)
 export {app};

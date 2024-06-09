@@ -1,16 +1,17 @@
 import User from "../models/user_models.mjs";
 import jwt from "jsonwebtoken";
+import { MONGODB_URI, PORT, SECRET_ACCESS_TOKEN } from '../config/index_config.mjs';
 
 export async function Verify(req, res, next) {
     try {
         const authHeader = req.headers["cookie"]; // get the session cookie from request header
-
+// console.log(`authHeader cookie ${authHeader}`);
         if (!authHeader) return res.sendStatus(401); // if there is no cookie from request header, send an unauthorized response.
         const cookie = authHeader.split("=")[1]; // If there is, split the cookie string to get the actual jwt
 
         // Verify using jwt to see if token has been tampered with or if it has expired.
         // that's like checking the integrity of the cookie
-        jwt.verify(cookie, config.SECRET_ACCESS_TOKEN, async (err, decoded) => {
+        jwt.verify(cookie, SECRET_ACCESS_TOKEN, async (err, decoded) => {
             if (err) {
                 // if token has been altered or has expired, return an unauthorized error
                 return res
@@ -25,6 +26,7 @@ export async function Verify(req, res, next) {
             next();
         });
     } catch (err) {
+        console.log(`error was ${err}`);
         res.status(500).json({
             status: "error",
             code: 500,

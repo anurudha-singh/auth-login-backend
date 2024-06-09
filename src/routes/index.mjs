@@ -1,6 +1,6 @@
 import express from "express"; // import the express module
 import {Auth, Login} from '../controllers/auth.mjs';
-
+import { Verify } from "../middleware/verify_mware.mjs";
 const app = express(); // Create an app object
 
 app.disable("x-powered-by"); // Reduce fingerprinting (optional)
@@ -20,5 +20,11 @@ app.get("/v1", (req, res) => {
             message: "Internal Server Error",
         });
     }
+});
+app.get("/v1/user", Verify, (req, res) => {
+    res.status(200).json({
+        status: "success",
+        message: "Welcome to the your Dashboard!",
+    });
 });
 export {app};

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-import { MONGODB_URI, PORT, SECRET_ACCESS_TOKEN } from './config/index.mjs';
+import { MONGODB_URI, PORT, SECRET_ACCESS_TOKEN } from '../src/config/index_config.mjs';
 import {app} from './routes/index.mjs';
 // import configPkg from './config/index.mjs';
 // const { MONGODB_URI, PORT, SECRET_ACCESS_TOKEN } =configPkg;
